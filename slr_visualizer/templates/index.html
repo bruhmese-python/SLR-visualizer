@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="static/Treant.css">
+    <link rel="stylesheet" href="static/super-simple.css">
+
+</head>
+<script src="static/vendor/raphael.js"></script>
+<script src="static/Treant.js"></script>
+<!-- <script src="static/super-simple.js"></script> -->
+<style>
+    input.button_text {
+        font-family: Consolas;
+        font-size: medium;
+        box-shadow: none;
+        border: none;
+        background-color: transparent;
+        color: blue;
+        padding: 6px 12px;
+        justify-content: center;
+    }
+
+    input.button_text:hover {
+        text-decoration: underline;
+    }
+
+    body {
+        font-family: Consolas;
+        zoom: 100%;
+    }
+
+    td {
+        padding-left: 2%;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 0.1fr 3fr 0.1fr;
+        grid-template-rows: 0.2fr 2.6fr 0.2fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+            ". header ."
+            ". m_body ."
+            ". footer .";
+    }
+
+
+    textarea,
+    .chart,
+    .centrify {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    textarea:focus {
+        background-color: #fff7c0;
+        border-width: 0;
+        padding-left: 1%;
+    }
+
+    .m_body {
+        grid-area: m_body;
+    }
+
+    .footer {
+        grid-area: footer;
+        font-style: italic;
+        color: #333333;
+    }
+
+    .header {
+        grid-area: header;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="m_body">
+            <table
+                style="height: 100%; width: 100%;border: 1px solid orange;border-collapse:collapse !important; background-color: white; ">
+                <tbody>
+                    <tr style="height: 30px;">
+                        <td
+                            style="width: 100%; height: 30px; border-style: none; padding: 3px; background-color: orange; text-align: left;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 69.2644%;"><span style="color: #ffffff;"><strong>Simple LR
+                                                    Visualizer</strong></span></td>
+                                        <td style="width: 30.7356%; text-align: right;"><span
+                                                style="color: #333333;"><em>Created by </em></span><em><a
+                                                    href="https://github.com/bruhmese-python"
+                                                    target="blank">@Joeldoslov</a></em></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="height: 25px;">
+                        <td style="width: 100%; height: 40px;">
+                            <br> Input Initial grammar :
+                        </td>
+                    </tr>
+                    <tr style="height: 46px;">
+                        <td style="width: 100%; height: 46px; text-align: center;">
+                            <form id="slr_form" class="appnitro " method="post" action="/generate">
+                                <dl>
+                                    <dt id="li_1" class="centrify">
+                                        <span>
+                                            <textarea name="grammar_text" rows="4" columns="50"
+                                                form="slr_form">{{grammar}}</textarea>
+                                            <!-- <input type="text" name="grammar" rows="4" columns="50" form="slr_form"
+                                                value="{{grammar}}"></input> -->
+                                        </span>
+
+                                    </dt>
+                                </dl>
+                        </td>
+                    </tr>
+                    <tr style="height: 45px;margin-top: 5px;">
+                        <td style="width: 100%; text-align: center; height: 45px;">
+                            <input id="saveForm" class="button_text" type="submit" name="submit"
+                                value="Generate Tree" />
+                        </td>
+                        </form>
+                    </tr>
+                    <tr style="height: 59px;">
+                        <td style="width: 100%; height: 57px; text-align: left;padding-top: 5px;">Log:<br />
+                            <samp>
+                                <textarea cols="30" rows="3" style="border-color: transparent;">OUTPUT</textarea>
+                            </samp>
+                        </td>
+                    </tr>
+                    <tr style="height: 18px;">
+                        <td style="width: 100%; text-align: left; height: 18px;padding-top: 2%;">Tree:
+                            <div class="chart centrify" id="OrganiseChart-simple">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="footer">Diagrams: treant.js</div>
+            <div class="header"></div>
+        </div>
+
+        <script>
+            var simple_chart_config = {{!s_json}};
+            new Treant(simple_chart_config);
+        </script>
+</body>
+
+</html>
