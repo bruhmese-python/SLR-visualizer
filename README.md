@@ -3,7 +3,7 @@ Generates SLR tree for a given grammar.
 
 ## Installation
 
-Download the slr_visualizer folder and in the terminal run:
+Download the slr_visualizer folder, and in the terminal, run:
 
 ```bash
   python startserver.py 
